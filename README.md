@@ -89,7 +89,7 @@
 
 ```bash
 # 进入项目文件夹
-cd automotive-project-delivery-assistant
+cd project-risk-closure-assistant
 
 # 创建并启用虚拟环境（Windows）
 python -m venv .venv
