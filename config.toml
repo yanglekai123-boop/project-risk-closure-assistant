@@ -1,0 +1,13 @@
+# 本机 OpenAI 兼容服务配置（可提交到 GitHub：不含任何密钥）
+# 适用于 LM Studio / vLLM / llama.cpp server 等本地服务。
+base_url = "http://localhost:1235/v1"
+# 实测 5 个本地模型后的最优选择（字段抽取任务）：
+#   google/gemma-4-e4b  14.1s ✅ 直接输出可用 JSON
+#   google/gemma-4-e2b  17.9s ❌ 结论在 reasoning，content 为空
+#   qwen/qwen3.5-9b     >75s  ❌ 超时
+#   recursivesi/flint    70.5s ❌ content 为空
+#   qwen/qwen3.8-27b     66.8s ❌ content 为空
+# 推理型模型不适合"一句话抽字段"；E4B 是唯一又快又给干净 JSON 的。
+model = "google/gemma-4-e4b"
+# 本地模型实测约 14 秒；留一倍余量，超时自动降级为本地解析。
+timeout_seconds = 35
